@@ -5,6 +5,9 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 600897147573.dkr.ecr.us-west-2.amazonaws.com
+      - echo Pulling base images from Docker Hub...
+      - docker pull maven:3.9.5-eclipse-temurin-17
+      - docker pull tomcat:9.0-jdk17
   build:
     commands:
       - echo Build started on `date`
