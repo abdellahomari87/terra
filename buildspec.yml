@@ -1,13 +1,13 @@
-version: 0.2
-
 phases:
   pre_build:
     commands:
+      - echo Retrieving Docker Hub credentials...
+      - export DOCKER_USERNAME=$(aws secretsmanager get-secret-value --secret-id dockerhub-credentials --query SecretString --output text | jq -r .username)
+      - export DOCKER_PASSWORD=$(aws secretsmanager get-secret-value --secret-id dockerhub-credentials --query SecretString --output text | jq -r .password)
+      - echo Logging in to Docker Hub...
+      - echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 600897147573.dkr.ecr.us-west-2.amazonaws.com
-      - echo Pulling base images from Docker Hub...
-      - docker pull maven:3.9.5-eclipse-temurin-17
-      - docker pull tomcat:9.0-jdk17
   build:
     commands:
       - echo Build started on `date`
