@@ -4,8 +4,8 @@ phases:
   pre_build:
     commands:
       - echo Retrieving Docker Hub credentials...
-      - export DOCKER_USERNAME=$(aws secretsmanager get-secret-value --secret-id dockerhub-credentials --query SecretString --output text | jq -r .username)
-      - export DOCKER_PASSWORD=$(aws secretsmanager get-secret-value --secret-id dockerhub-credentials --query SecretString --output text | jq -r .password)
+      - export DOCKER_USERNAME=$(aws secretsmanager get-secret-value --secret-id dockerhub-credentials --query 'SecretString' --output text | grep -oP '(?<="username":")[^"]+')
+      - export DOCKER_PASSWORD=$(aws secretsmanager get-secret-value --secret-id dockerhub-credentials --query 'SecretString' --output text | grep -oP '(?<="password":")[^"]+')
       - echo Logging in to Docker Hub...
       - echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
       - echo Logging in to Amazon ECR...
