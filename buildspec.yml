@@ -24,6 +24,8 @@ phases:
       - docker push 600897147573.dkr.ecr.us-west-2.amazonaws.com/my-app:latest
       - echo Generating imagedefinitions.json...
       - echo '[{"name":"my-app","imageUri":"600897147573.dkr.ecr.us-west-2.amazonaws.com/my-app:latest"}]' > imagedefinitions.json
-      - echo Uploading imagedefinitions.json to S3...
-      - aws s3 cp imagedefinitions.json s3://my-pipeline-artifacts87-bucket/imagedefinitions.json
       - echo Build completed on `date`
+
+artifacts:
+  files:
+    - imagedefinitions.json
