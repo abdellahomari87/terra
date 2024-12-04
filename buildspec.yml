@@ -23,7 +23,7 @@ phases:
       - echo Pushing the Docker image to ECR...
       - docker push 600897147573.dkr.ecr.us-west-2.amazonaws.com/my-app:latest
       - echo Generating imagedefinitions.json...
-      - echo '[{"name":"my-app","imageUri":"600897147573.dkr.ecr.us-west-2.amazonaws.com/my-app:latest"}]' > imagedefinitions.json
+      - echo '[{"name":"my-container","imageUri":"600897147573.dkr.ecr.us-west-2.amazonaws.com/my-container:latest"}]' > imagedefinitions.json
       - echo Build completed on `date`
 
 artifacts:
