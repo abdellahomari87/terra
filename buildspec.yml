@@ -18,7 +18,7 @@ phases:
       - echo "Listing files in source directory:"
       - ls -la
       - echo Archiving the code source...
-      - zip -r source-code.zip
+      - zip -r source-code.zip *
 
   build:
     commands:
