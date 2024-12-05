@@ -10,7 +10,7 @@ phases:
       - echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 600897147573.dkr.ecr.us-west-2.amazonaws.com
-      - echo "Current directory: $(pwd)"
+      - echo "Current directory:"
       - echo "Listing files in current directory:"
       - ls -la
       - echo "Navigating to source directory..."
